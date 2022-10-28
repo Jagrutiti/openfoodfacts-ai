@@ -8,7 +8,7 @@ DOWNLOAD_IMAGE_URL = "https://images.openfoodfacts.org/images/products/{}"
 
 def download_images_dataset():
     barcodes = []
-    with open("barcodes.jsonl", "r") as barcode_file:
+    with open("10000_barcodes.txt", "r") as barcode_file:
         for line in barcode_file:
             barcodes.append(line)
     
@@ -19,7 +19,7 @@ def download_images_dataset():
         res = requests.get(url, stream = True)
 
         if res.status_code == 200:
-            with open('./images/'+x.strip()+".jpg",'wb') as f:
+            with open('./images-new/'+x.strip()+".jpg",'wb') as f:
                 shutil.copyfileobj(res.raw, f)
             print('Image sucessfully Downloaded: ',image_file_name)
         else:
